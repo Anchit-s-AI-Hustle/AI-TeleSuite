@@ -1,6 +1,11 @@
 
+const path = require('path');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Pin workspace root to this project directory to prevent Next.js from
+  // traversing up to ~/package-lock.json and scanning the entire home dir
+  outputFileTracingRoot: path.join(__dirname),
   typescript: {
     ignoreBuildErrors: true,
   },

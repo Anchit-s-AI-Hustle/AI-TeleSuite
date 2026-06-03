@@ -15,6 +15,13 @@ import { AppVersionProvider } from '@/context/app-version-context';
 export const metadata: Metadata = {
   title: 'AI_TeleSuite',
   description: 'AI-powered Sales and Support Suite',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '64x64' },
+      { url: '/favicon.png', type: 'image/png' },
+    ],
+    apple: '/icon-192.png',
+  },
 };
 
 export const viewport = {
