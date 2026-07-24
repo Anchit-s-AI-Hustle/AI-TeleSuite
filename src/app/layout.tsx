@@ -1,5 +1,5 @@
-
 import type {Metadata} from 'next';
+import Script from 'next/script';
 import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
 import './globals.css';
@@ -11,6 +11,8 @@ import { UserProfileProvider } from '@/hooks/useUserProfile';
 import { KnowledgeBaseProvider } from '@/hooks/use-knowledge-base';
 import { ActivityLogProvider } from '@/hooks/use-activity-logger';
 import { AppVersionProvider } from '@/context/app-version-context';
+
+const PORTFOLIO_ASSETS = 'https://anchit-tandon.com/assets';
 
 export const metadata: Metadata = {
   title: 'AI_TeleSuite',
@@ -36,6 +38,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Shared portfolio navigation + project-level SkillTree / prompt library. */}
+        <link rel="stylesheet" href={`${PORTFOLIO_ASSETS}/app-skill-map.css`} />
+        <link rel="stylesheet" href={`${PORTFOLIO_ASSETS}/project-playbooks.css`} />
+      </head>
       <body className={`font-sans antialiased`}>
         <AppVersionProvider>
           <UserProfileProvider>
@@ -51,6 +58,8 @@ export default function RootLayout({
           </UserProfileProvider>
         </AppVersionProvider>
         <Toaster />
+        <Script src={`${PORTFOLIO_ASSETS}/app-skill-map.js`} strategy="afterInteractive" />
+        <Script src={`${PORTFOLIO_ASSETS}/project-playbooks.js`} strategy="afterInteractive" />
       </body>
     </html>
   );
